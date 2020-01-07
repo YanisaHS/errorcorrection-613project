@@ -1,5 +1,7 @@
 import spacy
 
+# To run a particular portion, just comment out whichever ones you don't need
+
 correctSubjectVerbAgreement = 0
 incorrectSubjectVerbAgreement = 0
 def returnsGerundSVAgreement(word):
@@ -137,18 +139,15 @@ def tenseIssues(sentence):
                     return False
     return True
 
-#openTextFile = "I went to the store yesterday, and I ate cookies." 
 openTextFile = open("/Users/yanisa/Google Drive/School/Homework - Grad School/UofA/EN 613 SLA/Research Project/WritingTextFile.txt")
 nlp = spacy.load("en_core_web_sm")
 textSample = nlp(openTextFile.read())
-# print(openTextFile)
 
-# To run + print the SV-Agreement function
+# To run + print the SV-Agreement function:
 totalNumberOfPhrases = 0
 makeTxtFileCorrectSVAgreement = open("/Users/yanisa/Google Drive/School/Homework - Grad School/UofA/EN 613 SLA/Research Project/CorrectSVAgreement.txt", "w")
 makeTxtFileIncorrectSVAgreement = open("/Users/yanisa/Google Drive/School/Homework - Grad School/UofA/EN 613 SLA/Research Project/IncorrectSVAgreement.txt", "w")
 for word in textSample:
-    # print(word, word.pos_, word.tag_, word.dep_)
     if (word.dep_ == "nsubj" or word.dep_ == "nsubjpass") and not word.head.dep_ == "ccomp":
         totalNumberOfPhrases = totalNumberOfPhrases + 1
         if subjectVerbAgreementNounSubject(word) == True:
@@ -158,7 +157,6 @@ for word in textSample:
             makeTxtFileCorrectSVAgreement.write(actuallyMakeSubTree + "\n")
         else:
             incorrectSubjectVerbAgreement = incorrectSubjectVerbAgreement + 1
-            # print(word, word.head)
             makeSubTree = word.head.subtree
             actuallyMakeSubTree = " ".join([tree.text for tree in makeSubTree])
             makeTxtFileIncorrectSVAgreement.write(actuallyMakeSubTree + "\n")
@@ -171,7 +169,6 @@ for word in textSample:
             makeTxtFileCorrectSVAgreement.write(actuallyMakeSubTree + "\n")
         else:
             incorrectSubjectVerbAgreement = incorrectSubjectVerbAgreement + 1
-            # print(word, word.head)
             makeSubTree = word.head.subtree
             actuallyMakeSubTree = " ".join([tree.text for tree in makeSubTree])
             makeTxtFileIncorrectSVAgreement.write(actuallyMakeSubTree + "\n")
@@ -180,7 +177,7 @@ print("The number of correct instances: ", correctSubjectVerbAgreement)
 print("The number of incorrect instances: ", incorrectSubjectVerbAgreement)
 #print("The number of total phrases is: ", totalNumberOfPhrases)
 
-# To run & print the tense issues function - prints as two columns
+# To run & print the tense issues function - prints as two columns:
 # tempCorrect = 0
 # tempIncorrect = 0
 # tempNumberOfPhrases = 0
@@ -199,7 +196,6 @@ print("The number of incorrect instances: ", incorrectSubjectVerbAgreement)
 # print("Incorrect use of tense: ", tempIncorrect)
 # print("Number of phrases: ", tempNumberOfPhrases)
 
-
 # To run + print the Direct Object Phrases:
 # totalObjOrComp = 0
 # makeTxtFileDirectObjects = open("/Users/yanisa/Google Drive/School/Homework - Grad School/UofA/EN 613 SLA/Research Project/DirectObjectsAndPhrases.txt", "w")
@@ -212,3 +208,5 @@ print("The number of incorrect instances: ", incorrectSubjectVerbAgreement)
 #         makeTxtFileDirectObjects.write(actuallyMakeSubTree + "\n")
 
 #print(totalObjOrComp)
+
+# Indefinite Article error identification done manually - no script needed
