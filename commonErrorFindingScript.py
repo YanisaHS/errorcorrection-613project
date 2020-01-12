@@ -139,14 +139,14 @@ def tenseIssues(sentence):
                     return False
     return True
 
-openTextFile = open("/Users/yanisa/Google Drive/School/Homework - Grad School/UofA/EN 613 SLA/Research Project/WritingTextFile.txt")
+openTextFile = open("/Users/yanisa/GoogleDrive/School/Homework - Grad School/UofA/EN 613 SLA/Research Project/WritingTextFile.txt")
 nlp = spacy.load("en_core_web_sm")
 textSample = nlp(openTextFile.read())
 
 # To run + print the SV-Agreement function:
 totalNumberOfPhrases = 0
-makeTxtFileCorrectSVAgreement = open("/Users/yanisa/Google Drive/School/Homework - Grad School/UofA/EN 613 SLA/Research Project/CorrectSVAgreement.txt", "w")
-makeTxtFileIncorrectSVAgreement = open("/Users/yanisa/Google Drive/School/Homework - Grad School/UofA/EN 613 SLA/Research Project/IncorrectSVAgreement.txt", "w")
+makeTxtFileCorrectSVAgreement = open("/Users/yanisa/GoogleDrive/School/Homework - Grad School/UofA/EN 613 SLA/Research Project/CorrectSVAgreement.txt", "w")
+makeTxtFileIncorrectSVAgreement = open("/Users/yanisa/GoogleDrive/School/Homework - Grad School/UofA/EN 613 SLA/Research Project/IncorrectSVAgreement.txt", "w")
 for word in textSample:
     if (word.dep_ == "nsubj" or word.dep_ == "nsubjpass") and not word.head.dep_ == "ccomp":
         totalNumberOfPhrases = totalNumberOfPhrases + 1
@@ -181,8 +181,8 @@ print("The number of incorrect instances: ", incorrectSubjectVerbAgreement)
 # tempCorrect = 0
 # tempIncorrect = 0
 # tempNumberOfPhrases = 0
-# makeTxtFileCorrectTensePhrases = open("/Users/yanisa/Google Drive/School/Homework - Grad School/UofA/EN 613 SLA/Research Project/CorrectTensePhrases.txt", "w")
-# makeTxtFileIncorrectTensePhrases = open("/Users/yanisa/Google Drive/School/Homework - Grad School/UofA/EN 613 SLA/Research Project/IncorrectTensePhrases.txt", "w")
+# makeTxtFileCorrectTensePhrases = open("/Users/yanisa/GoogleDrive/School/Homework - Grad School/UofA/EN 613 SLA/Research Project/CorrectTensePhrases.txt", "w")
+# makeTxtFileIncorrectTensePhrases = open("/Users/yanisa/GoogleDrive/School/Homework - Grad School/UofA/EN 613 SLA/Research Project/IncorrectTensePhrases.txt", "w")
 # for sentence in textSample.sents:
 #     tempNumberOfPhrases = tempNumberOfPhrases + 1
 #     if tenseIssues(sentence) == True:
@@ -198,7 +198,7 @@ print("The number of incorrect instances: ", incorrectSubjectVerbAgreement)
 
 # To run + print the Direct Object Phrases:
 # totalObjOrComp = 0
-# makeTxtFileDirectObjects = open("/Users/yanisa/Google Drive/School/Homework - Grad School/UofA/EN 613 SLA/Research Project/DirectObjectsAndPhrases.txt", "w")
+# makeTxtFileDirectObjects = open("/Users/yanisa/GoogleDrive/School/Homework - Grad School/UofA/EN 613 SLA/Research Project/DirectObjectsAndPhrases.txt", "w")
 # for word in textSample:
 #     if (word.dep_ == "dobj" or word.dep_ == "ccomp") and word.pos_ == "NOUN":
 #         totalObjOrComp = totalObjOrComp + 1
